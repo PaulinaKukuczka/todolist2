@@ -47,7 +47,7 @@ function showTask() {
 	let buffer = '';
 	buffer += '<ul>';
 	for (let i = 0; i < taskArray.length; i++) {
-		buffer += '<li>' + taskArray[i] + '<button onclick="removeTask('+i+')">👌</button>'+'</li>';
+		buffer += '<li class="list-unstyled p-2 d-flex justify-content-between align-items-center fs-5 text-lowercase">' + taskArray[i] + '<button onclick="removeTask('+i+')" class="btn btn-light ms-3 rounded-pill shadow">👌</button>'+'</li>';
 	}
 	buffer += '</ul>';
 	taskListDiv.innerHTML = buffer;
