@@ -27,7 +27,17 @@ function addTask() {
 	taskList.push(task);
 	window.localStorage.setItem('taskList', JSON.stringify(taskList));
 	showTask();
+	document.getElementById('task').value = '';
 }
+
+// przycisk enter
+let input = document.getElementById('task')
+input.addEventListener('keypress', e => {
+	if(e.key === 'Enter') {
+		e.preventDefault();
+		document.getElementById("myBtn").click();
+	}
+})
 
 function showTask() {
 	let taskListDiv = document.getElementById('taskList');
@@ -37,35 +47,47 @@ function showTask() {
 	let buffer = '';
 	buffer += '<ul>';
 	for (let i = 0; i < taskArray.length; i++) {
-		buffer += '<li>' + taskArray[i] + '</li>';
+		buffer += '<li>' + taskArray[i] + '<button onclick="removeTask('+i+')">👌</button>'+'</li>';
 	}
 	buffer += '</ul>';
 	taskListDiv.innerHTML = buffer;
 }
 
-function explaneJSON() {
-	let taskArray = Array();
-	console.log(taskArray);
-	taskArray.push(window.localStorage.getItem('task'));
-	taskArray.push(window.localStorage.getItem('task'));
-	console.log(taskArray);
-	//dodawanie do listy rzeczy z tablicy
-	taskList.innerHTML = taskArray;
-
-	window.localStorage.taskList = taskArray;
-	// JSON.stringify(taskArray)
-	//zapisywanie tablicy jako string
-	console.log(JSON.stringify(taskArray));
-
-	//zapisywanie całej tablicy w localStorage
-	let localStringTask = window.localStorage.setItem(
-		'taskList',
-		JSON.stringify(taskArray)
-	);
-	console.log(localStringTask);
-
-	// JSON.parse(taskArray)
-	//zapisywanie stringa z powrotem jako tablicę
-	let localArrayTask = JSON.parse(window.localStorage.getItem('taskList'));
-	console.log(localArrayTask);
+//usuwanie elementów z listy
+function removeTask(i) {
+	//wkładamy elementy do tablicy
+	let taskArray = JSON.parse(window.localStorage.getItem('taskList'))
+	console.log(taskArray)
+	taskArray.splice(i, 1);
+	window.localStorage.setItem('taskList', JSON.stringify(taskArray));
+	showTask();
 }
+
+//tłumaczenie JSON parse i JSON stringify
+
+// function explaneJSON() {
+// 	let taskArray = Array();
+// 	console.log(taskArray);
+// 	taskArray.push(window.localStorage.getItem('task'));
+// 	taskArray.push(window.localStorage.getItem('task'));
+// 	console.log(taskArray);
+// 	//dodawanie do listy rzeczy z tablicy
+// 	taskList.innerHTML = taskArray;
+
+// 	window.localStorage.taskList = taskArray;
+// 	// JSON.stringify(taskArray)
+// 	//zapisywanie tablicy jako string
+// 	console.log(JSON.stringify(taskArray));
+
+// 	//zapisywanie całej tablicy w localStorage
+// 	let localStringTask = window.localStorage.setItem(
+// 		'taskList',
+// 		JSON.stringify(taskArray)
+// 	);
+// 	console.log(localStringTask);
+
+// 	// JSON.parse(taskArray)
+// 	//zapisywanie stringa z powrotem jako tablicę
+// 	let localArrayTask = JSON.parse(window.localStorage.getItem('taskList'));
+// 	console.log(localArrayTask);
+// }
