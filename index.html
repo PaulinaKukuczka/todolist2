@@ -17,9 +17,10 @@
         </div>
 
         <div class="taskPlace bg-light bg-opacity-25 bg-gradient text-center border-0 rounded shadow-lg p-3 mb-5">
-            <input type="text" id="task" class="m-2 border border-0 rounded-pill shadow p-3 mb-4" placeholder="Wpisz nazwę zadania"><button onclick="addTask()" id="myBtn" class="border border-0 rounded-pill shadow p-3 mb-5 text-uppercase">Dodaj</button>
+            <input type="text" id="task" class="m-2 border border-0 rounded-pill shadow p-3 mb-2" placeholder="Wpisz nazwę zadania"><button onclick="addTask()" id="myBtn" class="border border-0 rounded-pill shadow p-3 mb-2 text-uppercase">Dodaj</button>
+            <div id="error" class="text-warning"></div>
             <div class="box">
-                <div id="taskList" class="d-flex justify-content-around"></div>
+                <div id="taskList" class="d-flex justify-content-around mt-4"></div>
             </div>
         </div>
     </div>

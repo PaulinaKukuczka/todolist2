@@ -4,6 +4,7 @@ function init() {
 	if (window.localStorage.getItem('name') == null) {
 		let getName = window.prompt('Podaj swoje imię:');
 		window.localStorage.setItem('name', getName);
+		// window.localStorage.setItem('name', 'Misiu')
 	}
 	name.innerHTML = window.localStorage.getItem('name');
 
@@ -21,11 +22,17 @@ init();
 
 function addTask() {
 	let task = document.getElementById('task').value;
+	console.log(task)
+	if (task !== '') {
+		let taskList = JSON.parse(window.localStorage.getItem('taskList'));
+		console.log(taskList);
+		taskList.push(task);
+		window.localStorage.setItem('taskList', JSON.stringify(taskList));
+		document.getElementById('error').innerHTML = ''
+	} else {
+		document.getElementById('error').innerHTML = 'Nic nie mam do dodania'
+	}
 
-	let taskList = JSON.parse(window.localStorage.getItem('taskList'));
-	console.log(taskList);
-	taskList.push(task);
-	window.localStorage.setItem('taskList', JSON.stringify(taskList));
 	showTask();
 	document.getElementById('task').value = '';
 }
